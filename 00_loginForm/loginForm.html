@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF=8">
+        <title>表单</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                font-family: Songti,sans-serif;
+                background-color: white;
+            }
+            span{
+                color:rgb(96, 96, 236);
+            }
+            div{
+                background-color:white;
+                padding:20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px gray;
+                max-width: 500px;
+                margin: 30px auto;
+            }
+            .under{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .div1{
+                width:23%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .picture{
+                width: 150px;
+                height: 150px;
+                border-radius:50%;
+                box-shadow: 0px 0px 10px gray;
+                margin:50px auto;
+                display: block;
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 style="text-align:center">欢迎注册会员</h1>
+        <form>
+            <!--电话号码栏-->
+            <lable for="phNumb">电话号码：<span>（必填）</span></lable>
+            <input class="under" type="number" id="phNumb" name="phNumb" required placeholder="11位手机号码">
+            <br><br><br>
+
+            <!--密码栏-->
+            <lable for="passWord">创建密码：<span>（必填）</span></lable>
+            <input class="under" type="password" id="passWord" name="passWord" required placeholder="8位密码">
+            <br><br><br>
+
+            <!--邮箱栏-->
+            <lable class="line" for="email">注册邮箱：</lable>
+            <input class="under" type="email" id="email" name="email" placeholder="例如2863152893@qq.com">
+            <br><br><br>
+
+            <!--验证码栏-->
+            <lable class="line" for="veriCode">验证码：<span>（区分大小写）</span></lable><br>
+            <input class="under" style="width: 50%;" type="text" id="veriCode" name="veriCode">
+            <div1 class="div1" id="variCode" style="color:red">
+                ABCD
+            </div1>
+                <button class="div1" id="refresh">点击刷新</button>
+            <br><br><br>
+
+            <!--头像栏-->
+            <lable for="picture">头像：</lable>
+            <img  class="picture" id="photo">
+            <input class="under" style="text-align:center" type="file" id="picture" name="picture" accept="image/*"
+            onchange="assignment()">
+            <br><br><br>
+
+            <!--性别栏-->
+            <lable class="line">性别：</lable><br>
+            <select class="under">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+            <br><br><br>
+
+            <!--生日栏-->
+            <label class="line" for="birthday">生日：</label>
+            <input class="under" type="date" id="birthday" name="birthday">
+            <br><br><br>
+
+            <!--年龄栏-->
+            <lable class="line" for="age">年龄：</lable>
+            <input class="under" type="number" id="age" name="age">
+            <br><br><br>
+
+            <!--未--><!--籍贯栏-->
+            <lable class="line">籍贯：</lable><br>
+            <lable>
+                <select id="sheng" class="under" style="width:49%" onchange="citylist(this.value)">
+                    <option value="0">请选择</option>
+                    <option value="1">湖北省</option>
+                    <option value="2">湖南省</option>
+                </select>
+                <select id="shi" class="under" style="width:49%">
+                    <option>请选择</option>
+                </select>
+            </lable>
+            <br><br><br>
+
+            <!--学历栏-->
+            <lable class="line">个人学历：</lable>
+            <label>
+                <select class="under">
+                    <option value="本科">本科</option>
+                    <option value="专科">专科</option>
+                    <option value="职高">职高</option>
+                </select>
+            </label>
+            <br><br><br>
+
+            <!--月薪栏-->
+            <lable class="line" for="mPay">月薪：</lable>
+            <span id="show">2000</span>
+            <lable><input class="under" type="range" id="mPay" name="mPay" min="2000" max="20000" step="500" value="2000"
+                onchange="cg()"></lable>
+            <br><br><br>
+
+            <!--爱好栏-->
+            <lable class="line" for="hobby">爱好：</lable><br>
+            <label>
+                <input class="" type="checkbox" name="sing" value="sing">
+                <div1 class="under" style="width:23%">唱歌</div1>
+                <input type="checkbox" name="running" value="running">
+                <div1 class="under" style="width:23%">跑步</div1>
+                <input type="checkbox" name="dancing" value="dancing">
+                <div1 class="under" style="width:23%">懒得填^_^</div1>
+            </label>
+            <br><br><br>
+
+            <!--简历栏-->
+            <label for="introduce">个人简历：</label>
+            <input class="under" style="height:300px" type="text" id="introduce" name="introduce">
+
+            <!--提交栏-->
+            <botton id="finish" value="finish" style="text-align:center;background-color:rgb(96, 96, 236)" class="under">完成注册</botton>
+        </form>
+        </div>
+
+        <script>
+            //验证码部分
+            var vc=document.getElementById("variCode")
+            var rf=document.getElementById("refresh")
+
+            var cd=""//作为全局变量，完成注册时，还需要验证验证码是否正确
+            function makeCode()
+            {
+                cd=''
+                var area="qwertyuiopasdfghjklzxcvbnm"+"QWERTYUIOPASDFGHJKLZXCVBNM"+"1234567890"
+                var len=area.length
+                for(var i=0;i<4;i++)
+                {
+                    var random=Math.floor(Math.random()*len)
+                    cd+=area.charAt(random)
+                }
+                return cd
+            }
+            vc.innerHTML=makeCode();
+            rf.onclick=function(){
+                vc.innerHTML=makeCode();
+            }
+
+            //验证电话号码与密码的位数（点击完成注册时进行）
+            var pn=document.getElementById("phNumb")
+            var pw=document.getElementById("passWord")
+            var bt=document.getElementById("finish")
+            //完成注册按钮在此
+            bt.onclick=function()
+            {
+                if(pn.value.length==11)
+                {
+                    var p1=true
+                }
+                if(pw.value.length==8)
+                {
+                    var p2=true
+                }
+
+                if(p1&&p2)//此情况下，还要验证验证码
+                {
+                    var putin=document.getElementById("veriCode")
+                    console.log(putin.value+' p')
+                    console.log(cd+' c')
+                    if(putin.value==cd)
+                    {
+                        alert('注册成功！欢迎您！')
+                    }else
+                    {
+                        alert('验证码错误！')
+                    }
+                    return
+                }else if((!p1)&&(!p2))
+                {
+                    alert('请检查电话号码与密码的位数。')
+                    return
+                }else if(!p1)
+                {
+                    alert('请检查电话号码的位数。')
+                    return
+                }else
+                {
+                    alert('请检查密码的位数。')
+                    return
+                }
+            }
+            //头像预览
+            function assignment()
+            {
+                document.getElementById('photo').src = window.URL.createObjectURL(document.getElementById('picture').files[0]);
+            }
+
+            //月薪变化
+            var pay=document.getElementById('mPay')
+            var s=document.getElementById('show')
+            function cg()
+            {
+                s.innerHTML=pay.value
+            }
+
+            //省市联动
+            var city= 
+            [
+                ["请选择"],
+                ["武汉市","襄阳市","孝感市","仙桃市"],
+                ["长沙市","湘潭市","株洲市","岳阳市"],
+            ];
+
+            // var s1 = document.getElementById("sheng").;
+            // console.log(s1)
+            var s2 = document.getElementById("shi");
+
+            function citylist(s1)
+            {
+                var a=city[s1]
+                s2.length=1
+                for(var i = 0;i < a.length;i++)
+                {
+                    var option = new Option();
+                    option.value = a[i];
+                    option.innerHTML = a[i];
+                    s2.appendChild(option);
+                }
+            }
+        </script>
+    </body>
+</html>
