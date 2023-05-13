@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>备忘录/Saroz</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="01css.css">
+        <script src="01js.js"></script>
+    </head>
+    <body>
+        <div id="whole" class="whole">
+            <div class="top">
+                <input type="text" id="needIn" placeholder="输入事项">
+                <button onclick="addElement()">添加</button>
+                <button onclick="Clear()">清空</button>
+                <button onclick="invertOrder()">倒序</button>
+                <button onclick="changeBackground()">更换背景</button>
+            </div>
+            <div id="content">
+                <div id="node" class="node" ondblclick="deleteElement(this)" onmouseenter="highLight(this)" onmouseleave="lowLight(this)">
+                    <div class="numberContainer">
+                        <p class="number">0</p>
+                    </div><div class="literalContainer">
+                        <p class="literal">first</p>
+                    </div>
+                </div>
+                <div class="node" ondblclick="deleteElement(this)" onmouseenter="highLight(this)" onmouseleave="lowLight(this)">
+                    <div class="numberContainer">
+                        <p class="number">1</p>
+                    </div><div class="literalContainer">
+                        <p class="literal">double click to delete this note</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

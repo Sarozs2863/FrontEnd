@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>印象笔记官网模仿</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<!-- 顶部导航 -->
+	<nav>
+		<ul>
+			<li>
+                <a href="#">产品 ▪ </a>
+                <ul>
+					<li><a href="#">功能介绍</a></li>
+					<li><a href="#">免费下载</a></li>
+                    <li><a href="#">会员权益</a></li>
+                </ul>
+            </li>
+			<li>
+				<a href="#">探索印象 ▪</a>
+                <ul>
+					<li><a href="#">最新动态</a></li>
+					<li><a href="#">用户故事</a></li>
+                    <li><a href="#">使用技巧</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">企业版 ▪</a>
+                <ul>
+					<li><a href="#">产品介绍</a></li>
+					<li><a href="#">成功案例</a></li>
+                    <li><a href="#">应用场景</a></li>
+                </ul>
+            </li>
+            <li><a href="#">模板库</a></li>
+            <li style="right: 0;"><a href="#">登录/注册</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主页内容 -->
+    <div>
+        <h1 style="text-align:center">欢迎注册印象笔记会员</h1>
+        <img class="picture" src="a.png">
+        <form>
+            <!--电话号码栏-->
+            <lable for="phNumb">电话号码：<span>（必填）</span></lable>
+            <input class="under" type="number" id="phNumb" name="phNumb" required placeholder="11位手机号码">
+            <br><br><br>
+
+            <!--密码栏-->
+            <lable for="passWord">创建密码：<span>（必填）</span></lable>
+            <input class="under" type="password" id="passWord" name="passWord" required placeholder="8位密码">
+            <br><br><br>
+
+            <botton id="finish" value="finish" style="text-align:center;background-color:rgb(218, 218, 218)" class="under">完成注册</botton>
+        </form>
+    </div>
+    
+    </body>
+</html>
